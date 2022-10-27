@@ -1,3 +1,15 @@
+::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+    background: rgba(50,0,80,1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(100,0,150,1);
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -26,6 +38,53 @@ body {
 .sidebar {
     grid-area: 2 / 1 / -1 / 2;
     background-color: rgba(60, 0, 110, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    
+    margin: 0 0.5rem;
+    padding: 0 0 0 1rem;
+    
+    border-bottom: 1px solid white;
+    font-weight: bolder;
+    font-size: 2rem;
+    
+}
+
+.sidebar-header:first-child {
+    margin-top: 2rem;
+}
+
+.entryList {
+    padding: 0 3rem;
+    margin: 1rem 0 1.5rem 0;
+    overflow: auto;
+    max-height: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.entry {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    text-decoration: underline;
+    
+}
+
+.entry:hover {
+    cursor:pointer;
+}
+
+.entry:active {
+    text-decoration: none;
+}
+
+.sidebar-header, .entry {
+    color: white;
 }
 
 .main {

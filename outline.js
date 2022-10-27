@@ -13,7 +13,7 @@
     Each section should probably be collapsable.
     
 5. Create a createTask method that will allow new tasks to be created and added to the specified section. A form popup will
-    likey need created for this.
+    likely need created for this.
 
 6. Create an editTask method that will allow tasks to be edited. Changes will need to be made in both the display and the
     task object itself.
