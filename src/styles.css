@@ -67,11 +67,32 @@ body {
     align-items: start;
 }
 
+.entry-container {
+    position: relative;
+    align-self: stretch;
+    display:flex;
+    justify-content: space-between;
+   
+}
+
+.entryList img {
+    height: 1.2rem;
+    width: auto;
+    position: relative;
+    top: 0.15rem;
+    flex: 0;
+}
+
+.entryList img:hover {
+    cursor:pointer;
+}
+
 .entry {
     background: none;
     border: none;
     font-size: 1.2rem;
     text-decoration: underline;
+    flex: 0;
     
 }
 

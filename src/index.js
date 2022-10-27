@@ -1,4 +1,24 @@
 import './styles.css';
+import UnfilledStar from './star-four-points-outline.svg';
+import Star from './star-four-points.png';
+
+function makeInbox(title, id) {
+
+    const inbox = document.createElement("div");
+
+    const inboxTitle = document.createElement("p");
+    inboxTitle.setAttribute("class", "sidebar-header");
+    inboxTitle.textContent = title;
+    inbox.appendChild(inboxTitle);
+
+    const entryList = document.createElement("div");
+    entryList.setAttribute("class", "entryList");
+    entryList.setAttribute("id", id);
+    inbox.appendChild(entryList);
+
+    return inbox;
+
+}
 
 function webpage() {
     const content = document.createElement("div");
@@ -11,34 +31,28 @@ function webpage() {
     const sidebar = document.createElement("div");
     sidebar.setAttribute("class", "sidebar");
 
-    const inbox = document.createElement("div");
-    inbox.setAttribute("class", "sidebar-header");
-    inbox.textContent = "Inbox";
+    sidebar.appendChild(makeInbox("Inbox", "inbox"));
+    
 
-    const entryList = document.createElement("div");
-    entryList.setAttribute("class", "entryList");
+    const inbox = sidebar.querySelector("#inbox");
+    const entryCon = document.createElement("div");
+    entryCon.setAttribute("class", "entry-container");
     const entry = document.createElement("button");
     entry.setAttribute("class", "entry");
     entry.textContent = "Test";
-    entryList.appendChild(entry);
+    entryCon.appendChild(entry);
 
-    sidebar.appendChild(inbox);
-    sidebar.appendChild(entryList);
+    const unfilledStar = new Image();
+    unfilledStar.src = UnfilledStar;
+    entryCon.appendChild(unfilledStar);
+    inbox.appendChild(entryCon);
+    
 
-    const highP = document.createElement("div");
-    highP.setAttribute("class", "sidebar-header");
-    highP.textContent = "High Priority";
-    sidebar.appendChild(highP);
+    sidebar.appendChild(makeInbox("High Priority", "high-priority"));
 
-    const medP = document.createElement("div");
-    medP.setAttribute("class", "sidebar-header");
-    medP.textContent = "Medium Priority";
-    sidebar.appendChild(medP);
+    sidebar.appendChild(makeInbox("Medium Priority", "med-priority"));
 
-    const lowP = document.createElement("div");
-    lowP.setAttribute("class", "sidebar-header");
-    lowP.textContent = "Low Priority";
-    sidebar.appendChild(lowP);
+    sidebar.appendChild(makeInbox("Low Priority", "low-priority"));
 
 
     const main = document.createElement('div');
