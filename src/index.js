@@ -1,6 +1,7 @@
 import './styles.css';
 import UnfilledStar from './star-four-points-outline.svg';
 import Star from './star-four-points.png';
+import Menu from './menu.svg';
 
 function makeInbox(title, id) {
 
@@ -26,7 +27,15 @@ function webpage() {
 
     const header = document.createElement("header");
     header.setAttribute("class", "header");
-    header.textContent = "To-Do List";
+    const menu = new Image();
+    menu.src = Menu;
+    menu.setAttribute("class", "header-hamburger");
+    header.appendChild(menu);
+    const headerP = document.createElement("p");
+    headerP.textContent = "To-Do List";
+    header.appendChild(headerP);
+    
+    
 
     const sidebar = document.createElement("div");
     sidebar.setAttribute("class", "sidebar");
@@ -49,10 +58,10 @@ function webpage() {
     
 
     sidebar.appendChild(makeInbox("High Priority", "high-priority"));
-
     sidebar.appendChild(makeInbox("Medium Priority", "med-priority"));
-
     sidebar.appendChild(makeInbox("Low Priority", "low-priority"));
+    sidebar.appendChild(makeInbox("Favorites", "favorites"));
+
 
 
     const main = document.createElement('div');
