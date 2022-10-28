@@ -2,6 +2,8 @@ import './styles.css';
 import UnfilledStar from './star-four-points-outline.svg';
 import Star from './star-four-points.png';
 import Menu from './menu.svg';
+import Edit from './text-box-edit-outline.png';
+
 
 function makeInbox(title, id) {
 
@@ -66,6 +68,47 @@ function webpage() {
 
     const main = document.createElement('div');
     main.setAttribute("class", "main");
+
+    const taskContainer = document.createElement("div");
+    taskContainer.setAttribute("class", "task-card-container");
+    const taskHeader = document.createElement("p");
+    taskHeader.setAttribute("class","task-header");
+    taskHeader.textContent = "Inbox";
+    taskContainer.appendChild(taskHeader);
+    main.appendChild(taskContainer);
+
+    const taskCard = document.createElement("div");
+    taskCard.setAttribute("class", "task-card");
+    taskContainer.appendChild(taskCard);
+
+    const taskButton = document.createElement("button");
+    taskButton.setAttribute("class", "task-button");
+    taskCard.appendChild(taskButton);
+
+    const taskDesc = document.createElement("div");
+    taskDesc.setAttribute("class", "task-desc");
+    taskDesc.textContent = "This is a test description.";
+    taskCard.appendChild(taskDesc);
+
+    const taskEdit = document.createElement("div");
+    taskEdit.setAttribute("class", "task-edit");
+
+    const taskTools = document.createElement("div");
+    taskTools.setAttribute("class", "task-tool")
+    const edit = new Image();
+    edit.src = Edit;
+    taskTools.appendChild(edit);
+
+    const del = document.createElement("p");
+    del.textContent = "X";
+    taskTools.appendChild(del);
+    taskEdit.appendChild(taskTools);
+
+
+    const pri = document.createElement("p");
+    pri.textContent = "Low Priority";
+    taskEdit.appendChild(pri);
+    taskCard.appendChild(taskEdit);
 
 
 
