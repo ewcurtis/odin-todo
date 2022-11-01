@@ -149,7 +149,7 @@ body {
 /***PROJECT AND TASK DISPLAY***/
 .task-card-container {
     flex: 1;
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
@@ -278,7 +278,7 @@ body {
     margin: 4rem;
     background-color: rgba(50,0,90,1);
     color: white;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
