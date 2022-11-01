@@ -3,6 +3,8 @@ import UnfilledStar from './star-four-points-outline.svg';
 import Star from './star-four-points.png';
 import Menu from './menu.svg';
 import Edit from './text-box-edit-outline.png';
+import CPlus from './plus-circle.png';
+import Plus from './plus.png';
 
 
 function makeInbox(title, id) {
@@ -42,7 +44,11 @@ function webpage() {
     const sidebar = document.createElement("div");
     sidebar.setAttribute("class", "sidebar");
 
-    sidebar.appendChild(makeInbox("Inbox", "inbox"));
+    const plus = new Image();
+    plus.src = Plus;
+    sidebar.appendChild(plus);
+
+    sidebar.appendChild(makeInbox("All Projects", "inbox"));
     
 
     const inbox = sidebar.querySelector("#inbox");
@@ -69,13 +75,18 @@ function webpage() {
     const main = document.createElement('div');
     main.setAttribute("class", "main");
 
+    //Project and tasks dashboard
     const taskContainer = document.createElement("div");
     taskContainer.setAttribute("class", "task-card-container");
     const taskHeader = document.createElement("p");
     taskHeader.setAttribute("class","task-header");
-    taskHeader.textContent = "Inbox";
+    taskHeader.textContent = "Test";
     taskContainer.appendChild(taskHeader);
     main.appendChild(taskContainer);
+
+    const cPlus = new Image();
+    cPlus.src = CPlus;
+    taskContainer.appendChild(cPlus);
 
     const taskCard = document.createElement("div");
     taskCard.setAttribute("class", "task-card");
@@ -109,6 +120,48 @@ function webpage() {
     pri.textContent = "Low Priority";
     taskEdit.appendChild(pri);
     taskCard.appendChild(taskEdit);
+
+    //New Project Dashboard
+    const newProj = document.createElement("div");
+    newProj.setAttribute("class", "project-card");
+
+    const projTitle = document.createElement("p");
+    projTitle.textContent = "New Project";
+    newProj.appendChild(projTitle);
+
+    const projField = document.createElement("div");
+    const projLabel = document.createElement("label");
+    projLabel.textContent = "Project Name: ";
+    projLabel.setAttribute("for", "new-proj");
+    projField.appendChild(projLabel);
+
+    const projInput = document.createElement("input");
+    projInput.setAttribute("id", "new-proj");
+    projInput.setAttribute("placeholder", "Max 25 chars");
+    projInput.setAttribute("maxlength", "25");
+    projField.appendChild(projInput);
+
+    newProj.appendChild(projField);
+
+    const projButtons = document.createElement("div");
+    projButtons.setAttribute("class", "new-proj-buttons");
+    const newProjButton = document.createElement("button");
+    newProjButton.setAttribute("class", "confirm");
+    newProjButton.textContent = "Create Project";
+    projButtons.appendChild(newProjButton);
+
+    const cancelProj = document.createElement("button");
+    cancelProj.setAttribute("class", "cancel");
+    cancelProj.textContent = "Cancel";
+    projButtons.appendChild(cancelProj);
+
+    newProj.appendChild(projButtons);
+
+
+
+    main.appendChild(newProj);
+
+    //New Task Dashboard
 
 
 
