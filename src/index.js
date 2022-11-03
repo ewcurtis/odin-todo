@@ -4,25 +4,10 @@ import Star from './star-four-points.png';
 import Menu from './menu.svg';
 import Plus from './plus.png';
 import ProjectDom from './ProjectDom.js';
+import Inbox from './Inbox.js';
 
 
-function makeInbox(title, id) {
 
-    const inbox = document.createElement("div");
-
-    const inboxTitle = document.createElement("p");
-    inboxTitle.setAttribute("class", "sidebar-header");
-    inboxTitle.textContent = title;
-    inbox.appendChild(inboxTitle);
-
-    const entryList = document.createElement("div");
-    entryList.setAttribute("class", "entryList");
-    entryList.setAttribute("id", id);
-    inbox.appendChild(entryList);
-
-    return inbox;
-
-}
 
 function webpage() {
     const content = document.createElement("div");
@@ -54,7 +39,9 @@ function webpage() {
 
     sidebar.appendChild(plus);
 
-    sidebar.appendChild(makeInbox("All Projects", "inbox"));
+    const projects = new Inbox("inbox", "All Projects");
+
+    sidebar.appendChild(projects.makeInbox());
     
 
     const inbox = sidebar.querySelector("#inbox");
@@ -79,10 +66,8 @@ function webpage() {
     inbox.appendChild(entryCon);
     
 
-    sidebar.appendChild(makeInbox("High Priority", "high-priority"));
-    sidebar.appendChild(makeInbox("Medium Priority", "med-priority"));
-    sidebar.appendChild(makeInbox("Low Priority", "low-priority"));
-    sidebar.appendChild(makeInbox("Favorites", "favorites"));
+    const favorites = new Inbox("favorites", "Favorites");
+    sidebar.appendChild(favorites.makeInbox());
 
 
 
