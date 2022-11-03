@@ -75,6 +75,48 @@ class ProjectDom {
 
        return taskContainer;
     }
+
+    createProject() {
+         //New Project Dashboard
+        const newProj = document.createElement("div");
+        newProj.setAttribute("class", "project-card");
+
+        const projTitle = document.createElement("p");
+        projTitle.textContent = "New Project";
+        newProj.appendChild(projTitle);
+
+        const projField = document.createElement("div");
+        const projLabel = document.createElement("label");
+        projLabel.textContent = "Project Name: ";
+        projLabel.setAttribute("for", "new-proj");
+        projField.appendChild(projLabel);
+
+        const projInput = document.createElement("input");
+        projInput.setAttribute("id", "new-proj");
+        projInput.setAttribute("placeholder", "Max 25 chars");
+        projInput.setAttribute("maxlength", "25");
+        projField.appendChild(projInput);
+
+        newProj.appendChild(projField);
+
+        //Project Buttons
+        const projButtons = document.createElement("div");
+        projButtons.setAttribute("class", "new-buttons");
+        const newProjButton = document.createElement("button");
+        newProjButton.setAttribute("class", "confirm");
+        newProjButton.textContent = "Create Project";
+        projButtons.appendChild(newProjButton);
+
+        const cancelProj = document.createElement("button");
+        cancelProj.setAttribute("class", "cancel");
+        cancelProj.textContent = "Cancel";
+        projButtons.appendChild(cancelProj);
+
+        newProj.appendChild(projButtons);
+        
+        return newProj;
+
+    }
 }
 
 export default ProjectDom;
