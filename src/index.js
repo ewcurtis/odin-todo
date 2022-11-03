@@ -2,10 +2,8 @@ import './styles.css';
 import UnfilledStar from './star-four-points-outline.svg';
 import Star from './star-four-points.png';
 import Menu from './menu.svg';
-import Edit from './text-box-edit-outline.png';
-import CPlus from './plus-circle.png';
 import Plus from './plus.png';
-import TaskDom from './TaskDom.js';
+import ProjectDom from './ProjectDom.js';
 
 
 function makeInbox(title, id) {
@@ -57,7 +55,16 @@ function webpage() {
     entryCon.setAttribute("class", "entry-container");
     const entry = document.createElement("button");
     entry.setAttribute("class", "entry");
+    entry.setAttribute("id", "Test");
     entry.textContent = "Test";
+    const proj = new ProjectDom();
+    entry.addEventListener("click", () => {
+        
+        while (main.firstChild) {
+            main.removeChild(main.firstChild);
+        }
+        main.appendChild(proj.displayProject(entry.getAttribute("id")));
+    })
     entryCon.appendChild(entry);
 
     const unfilledStar = new Image();
@@ -76,59 +83,7 @@ function webpage() {
     const main = document.createElement('div');
     main.setAttribute("class", "main");
 
-    //Project and tasks dashboard
-    const taskContainer = document.createElement("div");
-    taskContainer.setAttribute("class", "task-card-container");
-    const taskHeader = document.createElement("p");
-    taskHeader.setAttribute("class","task-header");
-    taskHeader.textContent = "Test";
-    taskContainer.appendChild(taskHeader);
-    main.appendChild(taskContainer);
-
-    const cPlus = new Image();
-    cPlus.src = CPlus;
-    cPlus.addEventListener("click", () => {
-        console.log("Got here!");
-        const task = new TaskDom();
-        while (main.firstChild) {
-            main.removeChild(main.firstChild);
-        }
-        main.appendChild(task.createTask());
-    })
-    taskContainer.appendChild(cPlus);
-
-    const taskCard = document.createElement("div");
-    taskCard.setAttribute("class", "task-card");
-    taskContainer.appendChild(taskCard);
-
-    const taskButton = document.createElement("button");
-    taskButton.setAttribute("class", "task-button");
-    taskCard.appendChild(taskButton);
-
-    const taskDesc = document.createElement("div");
-    taskDesc.setAttribute("class", "task-desc");
-    taskDesc.textContent = "This is a test description.";
-    taskCard.appendChild(taskDesc);
-
-    const taskEdit = document.createElement("div");
-    taskEdit.setAttribute("class", "task-edit");
-
-    const taskTools = document.createElement("div");
-    taskTools.setAttribute("class", "task-tool")
-    const edit = new Image();
-    edit.src = Edit;
-    taskTools.appendChild(edit);
-
-    const del = document.createElement("p");
-    del.textContent = "X";
-    taskTools.appendChild(del);
-    taskEdit.appendChild(taskTools);
-
-
-    const pri = document.createElement("p");
-    pri.textContent = "Low Priority";
-    taskEdit.appendChild(pri);
-    taskCard.appendChild(taskEdit);
+    main.appendChild(proj.displayProject(entry.getAttribute("id")));
 
     //New Project Dashboard
     const newProj = document.createElement("div");
