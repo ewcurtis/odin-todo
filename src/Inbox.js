@@ -1,3 +1,7 @@
+import UnfilledStar from './star-four-points-outline.svg';
+import Star from './star-four-points.png';
+import ProjectDom from './ProjectDom.js';
+
 class Inbox {
 
     projectArray = [];
@@ -5,9 +9,11 @@ class Inbox {
     constructor(id, title) {
         this.id = id;
         this.title = title;
+        this.makeInbox = this.makeInbox.bind(this);
     }
 
     makeInbox() {
+        
 
         const inbox = document.createElement("div");
     
@@ -21,11 +27,57 @@ class Inbox {
         entryList.setAttribute("id", this.id);
         inbox.appendChild(entryList);
     
-        return inbox;
+        return {inbox: inbox, entryList: entryList};
     
     }
+    #inboxProperties = this.makeInbox();
+    inbox = this.#inboxProperties.inbox;
+    #entryList = this.#inboxProperties.entryList;
 
-    
+    //Displays a single project in the sidebar
+    #displayProject(entryList, projectId, projectName, favorited=false) {
+        
+        const entryCon = document.createElement("div");
+        entryCon.setAttribute("class", "entry-container");
+        const entry = document.createElement("button");
+        entry.setAttribute("class", "entry");
+        entry.setAttribute("id", projectId);
+        entry.textContent = projectName;
+        entry.addEventListener("click", () => {
+            const proj = new ProjectDom();
+            const main = document.querySelector(".main");
+            while (main.firstChild) {
+                main.removeChild(main.firstChild);
+            }
+            main.appendChild(proj.displayProject(entry.getAttribute("id")));
+        })
+        entryCon.appendChild(entry);
+
+        const star = new Image();
+        if (!favorited) {  
+            star.src = UnfilledStar;
+            
+        } else {
+            star.src = Star;
+        }
+        
+        entryCon.appendChild(star);
+        entryList.appendChild(entryCon);
+        
+    }
+
+    displayProjects(entryList) {
+
+        while (entryList.firstChild) {
+            entryList.removeChild(entryList.firstChild);
+        }
+        for (let i = 0; i < this.projectArray.length; i++) {
+            const project = this.projectArray[i];
+            this.#displayProject(entryList, project.name, project.name, project.favorited);
+
+        }
+    }
+
 }
 
 export default Inbox;

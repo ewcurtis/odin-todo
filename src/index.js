@@ -1,12 +1,9 @@
 import './styles.css';
-import UnfilledStar from './star-four-points-outline.svg';
-import Star from './star-four-points.png';
+import Inbox from './Inbox.js';
 import Menu from './menu.svg';
 import Plus from './plus.png';
+import Project from './Project.js';
 import ProjectDom from './ProjectDom.js';
-import Inbox from './Inbox.js';
-
-
 
 
 function webpage() {
@@ -40,47 +37,30 @@ function webpage() {
     sidebar.appendChild(plus);
 
     const projects = new Inbox("inbox", "All Projects");
-
-    sidebar.appendChild(projects.makeInbox());
-    
-
-    const inbox = sidebar.querySelector("#inbox");
-    const entryCon = document.createElement("div");
-    entryCon.setAttribute("class", "entry-container");
-    const entry = document.createElement("button");
-    entry.setAttribute("class", "entry");
-    entry.setAttribute("id", "Test");
-    entry.textContent = "Test";
-    entry.addEventListener("click", () => {
-        
-        while (main.firstChild) {
-            main.removeChild(main.firstChild);
-        }
-        main.appendChild(proj.displayProject(entry.getAttribute("id")));
-    })
-    entryCon.appendChild(entry);
-
-    const unfilledStar = new Image();
-    unfilledStar.src = UnfilledStar;
-    entryCon.appendChild(unfilledStar);
-    inbox.appendChild(entryCon);
-    
+    const testProject = new Project("Test", []);
+    //Pushes test project to inbox to display below
+    projects.projectArray.push(testProject);
+    const project = projects.makeInbox();
+    projects.displayProjects(project.entryList);
+    sidebar.appendChild(project.inbox);
 
     const favorites = new Inbox("favorites", "Favorites");
-    sidebar.appendChild(favorites.makeInbox());
-
+    const favorite = favorites.makeInbox();
+    sidebar.appendChild(favorite.inbox);
 
 
     const main = document.createElement('div');
     main.setAttribute("class", "main");
 
-    main.appendChild(proj.displayProject(entry.getAttribute("id")));
+   // main.appendChild(proj.displayProject(entry.getAttribute("id")));
 
    
 
     content.appendChild(header);
     content.appendChild(sidebar);
     content.appendChild(main);
+
+    
     
     return content;
 }

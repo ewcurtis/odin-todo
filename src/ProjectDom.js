@@ -6,6 +6,8 @@ import TaskDom from './TaskDom.js';
 
 class ProjectDom {
 
+
+    //Displays task for a given project
     displayTaskCard(id, description, priority) {
         const taskCard = document.createElement("div");
         taskCard.setAttribute("class", "task-card");
