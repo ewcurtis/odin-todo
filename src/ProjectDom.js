@@ -1,6 +1,8 @@
 import Edit from './text-box-edit-outline.png';
 import CPlus from './plus-circle.png';
+import Inbox from './Inbox.js';
 import TaskDom from './TaskDom.js';
+import Project from './Project.js';
 
 //Makes changes to the DOM in order to display tasks of a project
 
@@ -48,7 +50,7 @@ class ProjectDom {
         return taskCard;
     }
 
-    displayProject(id="Test") {
+    displayProjectData(id="Test") {
         //Project and tasks dashboard
         const taskContainer = document.createElement("div");
         taskContainer.setAttribute("class", "task-card-container");
@@ -77,8 +79,8 @@ class ProjectDom {
 
        return taskContainer;
     }
-
-    createProject() {
+    
+    createProject(inbox, entryList) {
          //New Project Dashboard
         const newProj = document.createElement("div");
         newProj.setAttribute("class", "project-card");
@@ -95,11 +97,11 @@ class ProjectDom {
 
         const projInput = document.createElement("input");
         projInput.setAttribute("id", "new-proj");
-        projInput.setAttribute("placeholder", "Max 25 chars");
-        projInput.setAttribute("maxlength", "25");
+        projInput.setAttribute("placeholder", "Max 13 chars");
+        projInput.setAttribute("maxlength", "13");
         projField.appendChild(projInput);
-
         newProj.appendChild(projField);
+
 
         //Project Buttons
         const projButtons = document.createElement("div");
@@ -107,6 +109,17 @@ class ProjectDom {
         const newProjButton = document.createElement("button");
         newProjButton.setAttribute("class", "confirm");
         newProjButton.textContent = "Create Project";
+        //Creates new project and adds it to corresponding entryList in the sidebar
+        newProjButton.addEventListener("click", () => {
+            const project = new Project(projInput.value);
+            inbox.projectArray.push(project);
+            inbox.displayProjects(entryList);
+            const main = document.querySelector(".main");
+            while (main.firstChild) {
+                main.removeChild(main.firstChild);
+            }
+            main.appendChild(this.displayProjectData(project.name));
+        })
         projButtons.appendChild(newProjButton);
 
         const cancelProj = document.createElement("button");

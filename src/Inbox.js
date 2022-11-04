@@ -30,9 +30,6 @@ class Inbox {
         return {inbox: inbox, entryList: entryList};
     
     }
-    #inboxProperties = this.makeInbox();
-    inbox = this.#inboxProperties.inbox;
-    #entryList = this.#inboxProperties.entryList;
 
     //Displays a single project in the sidebar
     #displayProject(entryList, projectId, projectName, favorited=false) {
@@ -49,7 +46,7 @@ class Inbox {
             while (main.firstChild) {
                 main.removeChild(main.firstChild);
             }
-            main.appendChild(proj.displayProject(entry.getAttribute("id")));
+            main.appendChild(proj.displayProjectData(entry.getAttribute("id")));
         })
         entryCon.appendChild(entry);
 

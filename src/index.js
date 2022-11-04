@@ -31,7 +31,7 @@ function webpage() {
         while (main.firstChild) {
             main.removeChild(main.firstChild);
         }
-        main.appendChild(proj.createProject());
+        main.appendChild(proj.createProject(projects, project.entryList));
     })
 
     sidebar.appendChild(plus);
