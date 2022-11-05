@@ -1,7 +1,7 @@
 //Makes changes to the DOM in order to display the create/edit task screen
 
 class TaskDom {
-    createTask(project="test") {
+    createTask(project) {
     //New Task Dashboard
     const newTask = document.createElement("div");
     newTask.setAttribute("class", "new-task-card");
@@ -98,7 +98,7 @@ class TaskDom {
     taskButtons.setAttribute("class", "new-buttons");
     const newTaskButton = document.createElement("button");
     newTaskButton.setAttribute("class", "confirm");
-    newTaskButton.textContent = "Create Project";
+    newTaskButton.textContent = "Create Task";
     taskButtons.appendChild(newTaskButton);
 
     const cancelTask = document.createElement("button");

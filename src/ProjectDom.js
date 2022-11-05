@@ -65,18 +65,22 @@ class ProjectDom {
         cPlus.addEventListener("click", () => {
             const task = new TaskDom();
             try {
-                const parent = taskContainer.closest(".main");
-                while (parent.firstChild) {
-                    parent.removeChild(parent.firstChild);
+                const main = document.querySelector(".main");
+                while (main.firstChild) {
+                    main.removeChild(main.firstChild);
                 }
-                parent.appendChild(task.createTask(id));
-            } catch {
-                console.log("Well that didn't work");
+                main.appendChild(task.createTask(project));
+            } catch (e) {
+                console.log(e);
             }
             
         })
         taskContainer.appendChild(cPlus);
-        taskContainer.appendChild(this.displayTaskCard(new Task("TaskName", "This is a test description", "12/11/2022", "Low Priority")));
+
+        for (let i = 0; i < project.taskArray.length; i++) {
+            taskContainer.appendChild(this.displayTaskCard(project.taskArray[i]));
+        }
+        //taskContainer.appendChild(this.displayTaskCard(new Task("TaskName", "This is a test description", "12/11/2022", "Low Priority")));
 
        return taskContainer;
     }

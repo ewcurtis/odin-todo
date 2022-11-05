@@ -1,6 +1,6 @@
 class Task {
     static id = 1;
-    constructor(name, description, duedate, priority, completed=false) {
+    constructor(name, description="", duedate, priority, completed=false) {
         this.id = Task.id;
         this.name = name;
         this.description = description;
