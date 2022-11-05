@@ -16,8 +16,21 @@ class ProjectDom {
         taskCard.setAttribute("class", "task-card");
         taskCard.setAttribute("id", task.id);
 
+        let pressed = false;
         const taskButton = document.createElement("button");
         taskButton.setAttribute("class", "task-button");
+        taskButton.addEventListener("click", () => {
+            if (!pressed) {
+                taskDesc.style.textDecoration = "line-through";
+                taskButton.style.backgroundColor = "rgba(90, 0, 140, 1)";
+                pressed = !pressed;
+            } else {
+                taskDesc.style.textDecoration = "none";
+                taskButton.style.backgroundColor = "white";
+                pressed = !pressed;
+
+            }
+        })
         taskCard.appendChild(taskButton);
 
         const taskDesc = document.createElement("div");

@@ -200,6 +200,7 @@ body {
     width: 1.5rem;
     grid-column: 1 / 2;
     margin: 0 0.75rem;
+    cursor: pointer;
 }
 
 .task-desc {
@@ -228,6 +229,7 @@ body {
 .task-tool img {
     height: 1.2rem;
     width: auto;
+    cursor: pointer;
     
 }
 
