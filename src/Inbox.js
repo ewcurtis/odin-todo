@@ -32,26 +32,26 @@ class Inbox {
     }
 
     //Displays a single project in the sidebar
-    #displayProject(entryList, projectId, projectName, favorited=false) {
+    #displayProject(entryList, project) {
         
         const entryCon = document.createElement("div");
         entryCon.setAttribute("class", "entry-container");
         const entry = document.createElement("button");
         entry.setAttribute("class", "entry");
-        entry.setAttribute("id", projectId);
-        entry.textContent = projectName;
+        entry.setAttribute("id", project.id);
+        entry.textContent = project.name;
         entry.addEventListener("click", () => {
             const proj = new ProjectDom();
             const main = document.querySelector(".main");
             while (main.firstChild) {
                 main.removeChild(main.firstChild);
             }
-            main.appendChild(proj.displayProjectData(entry.getAttribute("id")));
+            main.appendChild(proj.displayProjectData(project));
         })
         entryCon.appendChild(entry);
 
         const star = new Image();
-        if (!favorited) {  
+        if (!project.favorited) {  
             star.src = UnfilledStar;
             
         } else {
@@ -70,7 +70,7 @@ class Inbox {
         }
         for (let i = 0; i < this.projectArray.length; i++) {
             const project = this.projectArray[i];
-            this.#displayProject(entryList, project.name, project.name, project.favorited);
+            this.#displayProject(entryList, project);
 
         }
     }
