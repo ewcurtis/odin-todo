@@ -6,8 +6,8 @@ import ProjectDom from "./ProjectDom";
 class TaskDom {
     createTask(project) {
 
-        const proj = new ProjectDom();
-        const main = document.querySelector(".main");
+    const proj = new ProjectDom();
+    const main = document.querySelector(".main");
     //New Task Dashboard
     const newTask = document.createElement("div");
     newTask.setAttribute("class", "new-task-card");

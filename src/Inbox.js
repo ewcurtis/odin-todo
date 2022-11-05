@@ -9,12 +9,12 @@ class Inbox {
     constructor(id, title) {
         this.id = id;
         this.title = title;
-        this.makeInbox = this.makeInbox.bind(this);
+        
     }
 
     makeInbox() {
         
-
+        
         const inbox = document.createElement("div");
     
         const inboxTitle = document.createElement("p");
@@ -34,15 +34,38 @@ class Inbox {
     //Displays a single project in the sidebar
     #displayProject(entryList, project) {
         
+        const proj = new ProjectDom();
+
+
         const entryCon = document.createElement("div");
         entryCon.setAttribute("class", "entry-container");
+        const delEntry = document.createElement("span");
+        delEntry.setAttribute("class", "del-project");
+        delEntry.textContent = "X";
+        //Deletes project from sideboard and displays first project in list if applicable. Otherwise it clears the main DOM.
+        delEntry.addEventListener("click", () => {
+            const main = document.querySelector(".main");
+            this.projectArray.splice(this.projectArray.indexOf(project), 1);
+            this.displayProjects(entryList);
+
+            while (main.firstChild !== null) {
+                main.removeChild(main.firstChild);
+            }
+            if (this.projectArray.length > 0) {
+                main.appendChild(proj.displayProjectData(this.projectArray[0]));
+            }
+            
+            
+        })
+        entryCon.appendChild(delEntry);
+
         const entry = document.createElement("button");
         entry.setAttribute("class", "entry");
         entry.setAttribute("id", project.id);
         entry.textContent = project.name;
         entry.addEventListener("click", () => {
-            const proj = new ProjectDom();
             const main = document.querySelector(".main");
+            
             while (main.firstChild) {
                 main.removeChild(main.firstChild);
             }

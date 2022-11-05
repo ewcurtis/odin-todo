@@ -118,6 +118,15 @@ body {
     cursor:pointer;
 }
 
+.del-project {
+    color: black;
+    cursor: pointer;
+    font-size: 0.8rem;
+    align-self: center;
+    font-weight: bolder;
+    
+}
+
 .entry {
     background: none;
     border: none;

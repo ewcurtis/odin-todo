@@ -82,6 +82,7 @@ class ProjectDom {
         }
         //taskContainer.appendChild(this.displayTaskCard(new Task("TaskName", "This is a test description", "12/11/2022", "Low Priority")));
 
+
        return taskContainer;
     }
     
