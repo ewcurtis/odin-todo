@@ -173,7 +173,7 @@ body {
 
 .task-card {
     height: 5rem;
-    margin: 1rem;
+    margin: 0.5rem 1rem;
     background-color: rgba(28,28,30,1);
     color: white;
     border-radius: 5px;

@@ -1,7 +1,13 @@
 //Makes changes to the DOM in order to display the create/edit task screen
 
+import Task from "./Task";
+import ProjectDom from "./ProjectDom";
+
 class TaskDom {
     createTask(project) {
+
+        const proj = new ProjectDom();
+        const main = document.querySelector(".main");
     //New Task Dashboard
     const newTask = document.createElement("div");
     newTask.setAttribute("class", "new-task-card");
@@ -19,8 +25,8 @@ class TaskDom {
 
     const taskNameInput = document.createElement("input");
     taskNameInput.setAttribute("id", "task-name");
-    taskNameInput.setAttribute("placeholder", "Max 25 chars");
-    taskNameInput.setAttribute("maxlength", "25");
+    taskNameInput.setAttribute("placeholder", "Max 30 chars");
+    taskNameInput.setAttribute("maxlength", "30");
     taskNameField.appendChild(taskNameInput);
     newTask.appendChild(taskNameField);
 
@@ -58,7 +64,7 @@ class TaskDom {
     const low = document.createElement("input");
     low.setAttribute("type", "radio");
     low.setAttribute("checked", "true");
-    low.setAttribute("id", "low");
+    low.value = "Low Priority";
     low.setAttribute("name", "p");
     priorities.appendChild(low);
 
@@ -70,7 +76,7 @@ class TaskDom {
     //Medium
     const med = document.createElement("input");
     med.setAttribute("type", "radio");
-    med.setAttribute("id", "medium");
+    med.value = "Medium Priority";
     med.setAttribute("name", "p");
     priorities.appendChild(med);
 
@@ -82,7 +88,7 @@ class TaskDom {
     //High
     const high = document.createElement("input");
     high.setAttribute("type", "radio");
-    high.setAttribute("id", "high");
+    high.value = "High Priority";
     high.setAttribute("name", "p");
     priorities.appendChild(high);
 
@@ -99,11 +105,27 @@ class TaskDom {
     const newTaskButton = document.createElement("button");
     newTaskButton.setAttribute("class", "confirm");
     newTaskButton.textContent = "Create Task";
+    //Creates new task and displays it in the project dom
+    newTaskButton.addEventListener("click", () => {
+        project.taskArray.push(new Task(taskNameInput.value, taskDescInput.value, taskDueDateInput.value,
+             document.querySelector("input[name='p']:checked").value));
+             while (main.firstChild) {
+                main.removeChild(main.firstChild);
+            }
+            main.appendChild(proj.displayProjectData(project));
+
+    })
     taskButtons.appendChild(newTaskButton);
 
     const cancelTask = document.createElement("button");
     cancelTask.setAttribute("class", "cancel");
     cancelTask.textContent = "Cancel";
+    cancelTask.addEventListener("click", () => {
+        while (main.firstChild) {
+            main.removeChild(main.firstChild);
+        }
+        main.appendChild(proj.displayProjectData(project));
+    })
     taskButtons.appendChild(cancelTask);
 
     newTask.appendChild(taskButtons);

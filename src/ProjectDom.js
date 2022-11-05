@@ -22,7 +22,7 @@ class ProjectDom {
 
         const taskDesc = document.createElement("div");
         taskDesc.setAttribute("class", "task-desc");
-        taskDesc.textContent = task.description;
+        taskDesc.textContent = task.name;
         taskCard.appendChild(taskDesc);
 
         const taskEdit = document.createElement("div");
