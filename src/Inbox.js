@@ -39,12 +39,18 @@ class Inbox {
 
         const entryCon = document.createElement("div");
         entryCon.setAttribute("class", "entry-container");
+        entryCon.setAttribute("id", `id${project.id}`);
         const delEntry = document.createElement("span");
         delEntry.setAttribute("class", "del-project");
         delEntry.textContent = "X";
         //Deletes project from sideboard and displays first project in list if applicable. Otherwise it clears the main DOM.
         delEntry.addEventListener("click", () => {
             const main = document.querySelector(".main");
+            if (project.favorited) {
+                const favorites = document.querySelector("#favorites");
+                favorites.removeChild(favorites.querySelector(`#id${project.id}`));
+            }
+            
             this.projectArray.splice(this.projectArray.indexOf(project), 1);
             this.displayProjects(entryList);
 
@@ -80,9 +86,31 @@ class Inbox {
         } else {
             star.src = Star;
         }
-        
+
         entryCon.appendChild(star);
         entryList.appendChild(entryCon);
+
+        //Adds / removes entry from the favorites section
+        star.addEventListener("click", () => {
+            const favorites = document.querySelector("#favorites");
+            if (project.favorited) {  
+                star.src = UnfilledStar;
+                favorites.removeChild(favorites.querySelector(`#id${project.id}`));
+                
+            } else {
+                star.src = Star;
+                favorites.appendChild(entryCon);
+                
+            }
+
+            project.favorited = !project.favorited;
+            this.displayProjects(entryList);
+
+            
+        })
+        
+        
+        
         
     }
 

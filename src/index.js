@@ -52,10 +52,6 @@ function webpage() {
     const main = document.createElement('div');
     main.setAttribute("class", "main");
 
-   // main.appendChild(proj.displayProject(entry.getAttribute("id")));
-
-   
-
     content.appendChild(header);
     content.appendChild(sidebar);
     content.appendChild(main);
