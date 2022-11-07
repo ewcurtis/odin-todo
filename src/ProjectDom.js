@@ -42,7 +42,12 @@ class ProjectDom {
         taskEdit.setAttribute("class", "task-edit");
 
         const taskTools = document.createElement("div");
-        taskTools.setAttribute("class", "task-tool")
+        taskTools.setAttribute("class", "task-tool");
+
+        const dueDate = document.createElement("p");
+        dueDate.textContent = `Due Date: ${task.dueDate}`;
+        taskTools.appendChild(dueDate);
+
         const edit = new Image();
         edit.src = Edit;
         edit.addEventListener("click", () => {
@@ -137,8 +142,8 @@ class ProjectDom {
 
         const projInput = document.createElement("input");
         projInput.setAttribute("id", "new-proj");
-        projInput.setAttribute("placeholder", "Max 13 chars");
-        projInput.setAttribute("maxlength", "13");
+        projInput.setAttribute("placeholder", "Max 20 chars");
+        projInput.setAttribute("maxlength", "20");
         projField.appendChild(projInput);
         newProj.appendChild(projField);
 
