@@ -4,6 +4,7 @@ import Inbox from './Inbox.js';
 import TaskDom from './TaskDom.js';
 import Project from './Project.js';
 import Task from './Task';
+import isAfter from 'date-fns/isAfter';
 
 //Makes changes to the DOM in order to display tasks of a project
 
@@ -44,8 +45,14 @@ class ProjectDom {
         const taskTools = document.createElement("div");
         taskTools.setAttribute("class", "task-tool");
 
+        
+        const taskDate = task.dueDate.split("-");
         const dueDate = document.createElement("p");
         dueDate.textContent = `Due Date: ${task.dueDate}`;
+        //sets due date field to red if it's past due.
+        if (isAfter(new Date(), new Date(taskDate[0], taskDate[1]-1, taskDate[2]))) {
+            dueDate.style.color = "red";
+        }
         taskTools.appendChild(dueDate);
 
         const edit = new Image();
