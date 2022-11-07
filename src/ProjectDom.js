@@ -11,7 +11,7 @@ class ProjectDom {
     
 
     //Displays task for a given project
-    displayTaskCard(task) {
+    displayTaskCard(project, task) {
         const taskCard = document.createElement("div");
         taskCard.setAttribute("class", "task-card");
         taskCard.setAttribute("id", task.id);
@@ -51,6 +51,7 @@ class ProjectDom {
         del.textContent = "X";
         del.addEventListener("click", () => {
             del.closest(".task-card-container").removeChild(taskCard);
+            project.taskArray.splice(project.taskArray.indexOf(task), 1);
         })
         taskTools.appendChild(del);
         taskEdit.appendChild(taskTools);
@@ -91,7 +92,7 @@ class ProjectDom {
         taskContainer.appendChild(cPlus);
 
         for (let i = 0; i < project.taskArray.length; i++) {
-            taskContainer.appendChild(this.displayTaskCard(project.taskArray[i]));
+            taskContainer.appendChild(this.displayTaskCard(project, project.taskArray[i]));
         }
         //taskContainer.appendChild(this.displayTaskCard(new Task("TaskName", "This is a test description", "12/11/2022", "Low Priority")));
 
