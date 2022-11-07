@@ -59,6 +59,17 @@ class ProjectDom {
 
         const pri = document.createElement("p");
         pri.textContent = task.priority;
+        switch (pri.textContent) {
+            case "Medium Priority":
+                taskCard.className += " med-priority"
+                break;
+            case "High Priority":
+                taskCard.className += " high-priority"
+                break;
+            default:
+                taskCard.className += " low-priority"
+
+        }
         taskEdit.appendChild(pri);
         taskCard.appendChild(taskEdit);
 

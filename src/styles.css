@@ -186,12 +186,23 @@ body {
     background-color: rgba(28,28,30,1);
     color: white;
     border-radius: 5px;
-    border-left: 3px solid green;
     display: grid;
     grid-template-columns: 2rem 2fr 1fr;
     align-items: center;
     gap: 1rem;
 
+}
+
+.low-priority {
+    border-left: 3px solid green;
+}
+
+.med-priority {
+    border-left: 3px solid orange;
+}
+
+.high-priority {
+    border-left: 3px solid red;
 }
 
 .task-button {
