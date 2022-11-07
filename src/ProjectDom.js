@@ -45,6 +45,15 @@ class ProjectDom {
         taskTools.setAttribute("class", "task-tool")
         const edit = new Image();
         edit.src = Edit;
+        edit.addEventListener("click", () => {
+            const taskDom = new TaskDom();
+            const main = document.querySelector(".main");
+                while (main.firstChild) {
+                    main.removeChild(main.firstChild);
+                }
+                main.appendChild(taskDom.editTask(project, task));
+            
+        })
         taskTools.appendChild(edit);
 
         const del = document.createElement("p");
