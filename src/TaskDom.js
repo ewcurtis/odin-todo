@@ -252,9 +252,7 @@ class TaskDom {
     confirmEditButton.addEventListener("click", () => {
         task.name = taskNameInput.value;
         task.description = taskDescInput.value;
-        console.log(`new due date: ${taskDueDateInput.value}`)
         task.dueDate = taskDueDateInput.value;
-        console.log(`task due date: ${task.dueDate}`);
         task.priority = document.querySelector("input[name='p']:checked").value;
 
              while (main.firstChild) {

@@ -1,9 +1,7 @@
 import Edit from './text-box-edit-outline.png';
 import CPlus from './plus-circle.png';
-import Inbox from './Inbox.js';
 import TaskDom from './TaskDom.js';
 import Project from './Project.js';
-import Task from './Task';
 import isAfter from 'date-fns/isAfter';
 
 //Makes changes to the DOM in order to display tasks of a project

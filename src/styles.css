@@ -337,7 +337,13 @@ body {
     color: red;
 }
 
+
+
 @media screen and (max-width: 500px) {
+    .content {
+        grid-template-columns: 1fr;
+        
+    }
 
     .header {
         grid-template-columns: 2rem 5fr;
@@ -347,12 +353,22 @@ body {
     }
     .sidebar {
         display: none;
+        
+    }
+
+    #sidebar-menu {
+        display: flex;
     }
 
     .main {
         grid-area: 2 / 1 / -1 / 3;
         
     }
+
+    #main-sidebar {
+        grid-area: 3 / 1 / -1 / 3;
+
+    } 
 
     .new-task-card {
         margin: 1rem;

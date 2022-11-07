@@ -15,6 +15,17 @@ function webpage() {
     const menu = new Image();
     menu.src = Menu;
     menu.setAttribute("class", "header-hamburger");
+    let clicked = false;
+    menu.addEventListener("click", () => {
+        if (!clicked) {
+            sidebar.id += "sidebar-menu";
+            main.id += "main-sidebar";
+        } else {
+            sidebar.id = "";
+            main.id = "";
+        }
+        clicked = !clicked;
+    })
     header.appendChild(menu);
     const headerP = document.createElement("p");
     headerP.textContent = "To-Do List";
