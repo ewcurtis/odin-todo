@@ -159,6 +159,7 @@ class ProjectDom {
         projInput.setAttribute("id", "new-proj");
         projInput.setAttribute("placeholder", "Max 20 chars");
         projInput.setAttribute("maxlength", "20");
+        projInput.required = true;
         projField.appendChild(projInput);
         newProj.appendChild(projField);
 
@@ -172,15 +173,20 @@ class ProjectDom {
         //Creates new project and adds it to corresponding entryList in the sidebar
         const main = document.querySelector(".main");
         newProjButton.addEventListener("click", () => {
-            const project = new Project(projInput.value);
-            inbox.projectArray.push(project);
-            inbox.displayProjects(entryList);
-            
-            while (main.firstChild) {
-                main.removeChild(main.firstChild);
+            if (!projInput.validity.valid) {
+                projInput.reportValidity();
+            } else {
+                const project = new Project(projInput.value);
+                inbox.projectArray.push(project);
+                inbox.displayProjects(entryList);
+                
+                while (main.firstChild) {
+                    main.removeChild(main.firstChild);
+                }
+                main.appendChild(this.displayProjectData(project));
             }
-            main.appendChild(this.displayProjectData(project));
-        })
+            
+        });
         projButtons.appendChild(newProjButton);
 
         const cancelProj = document.createElement("button");

@@ -27,6 +27,7 @@ class TaskDom {
     taskNameInput.setAttribute("id", "task-name");
     taskNameInput.setAttribute("placeholder", "Max 30 chars");
     taskNameInput.setAttribute("maxlength", "30");
+    taskNameInput.required = true;
     taskNameField.appendChild(taskNameInput);
     newTask.appendChild(taskNameField);
 
@@ -40,6 +41,7 @@ class TaskDom {
     const taskDueDateInput = document.createElement("input");
     taskDueDateInput.setAttribute("id", "task-due-date");
     taskDueDateInput.setAttribute("type", "date");
+    taskDueDateInput.required = true;
     taskDueDateField.appendChild(taskDueDateInput);
     newTask.appendChild(taskDueDateField);
 
@@ -107,14 +109,20 @@ class TaskDom {
     newTaskButton.textContent = "Create Task";
     //Creates new task and displays it in the project dom
     newTaskButton.addEventListener("click", () => {
-        project.taskArray.push(new Task(taskNameInput.value, taskDescInput.value, taskDueDateInput.value,
-             document.querySelector("input[name='p']:checked").value));
-             while (main.firstChild) {
-                main.removeChild(main.firstChild);
-            }
-            main.appendChild(proj.displayProjectData(project));
-
-    })
+        if (!taskNameInput.validity.valid) {
+            taskNameInput.reportValidity();
+        } else if (!taskDueDateInput.validity.valid) {
+            taskDueDateInput.reportValidity();
+        } else {
+            project.taskArray.push(new Task(taskNameInput.value, taskDescInput.value, taskDueDateInput.value,
+                document.querySelector("input[name='p']:checked").value));
+                while (main.firstChild) {
+                   main.removeChild(main.firstChild);
+               }
+               main.appendChild(proj.displayProjectData(project));
+        }
+        
+    });
     taskButtons.appendChild(newTaskButton);
 
     const cancelTask = document.createElement("button");
@@ -157,6 +165,7 @@ class TaskDom {
         taskNameInput.setAttribute("id", "task-name");
         taskNameInput.setAttribute("placeholder", "Max 30 chars");
         taskNameInput.setAttribute("maxlength", "30");
+        taskNameInput.required = true;
         console.log(`date: ${task.dueDate}`);
         taskNameInput.value = task.name;
         taskNameField.appendChild(taskNameInput);
@@ -173,6 +182,7 @@ class TaskDom {
         taskDueDateInput.setAttribute("id", "task-due-date");
         taskDueDateInput.setAttribute("type", "date");
         taskDueDateInput.value = task.dueDate;
+        taskDueDateInput.required = true;
         taskDueDateField.appendChild(taskDueDateInput);
         newTask.appendChild(taskDueDateField);
 
@@ -251,17 +261,20 @@ class TaskDom {
         confirmEditButton.textContent = "Save Changes";
         //Creates new task and displays it in the project dom
         confirmEditButton.addEventListener("click", () => {
-            task.name = taskNameInput.value;
-            task.description = taskDescInput.value;
-            task.dueDate = taskDueDateInput.value;
-            task.priority = document.querySelector("input[name='p']:checked").value;
+            if (!taskNameInput.validity.valid) {
+                taskNameInput.reportValidity();
+            } else if (!taskDueDateInput.validity.valid) {
+                taskDueDateInput.reportValidity();
+            } else {
+                project.taskArray.push(new Task(taskNameInput.value, taskDescInput.value, taskDueDateInput.value,
+                    document.querySelector("input[name='p']:checked").value));
+                    while (main.firstChild) {
+                       main.removeChild(main.firstChild);
+                   }
+                   main.appendChild(proj.displayProjectData(project));
+            }
 
-                while (main.firstChild) {
-                    main.removeChild(main.firstChild);
-                }
-                main.appendChild(proj.displayProjectData(project));
-
-        })
+        });
         taskButtons.appendChild(confirmEditButton);
 
         const cancelTask = document.createElement("button");
