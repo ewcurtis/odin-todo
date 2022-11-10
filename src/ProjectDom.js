@@ -11,6 +11,9 @@ class ProjectDom {
 
     //Displays task for a given project
     displayTaskCard(project, task) {
+        const taskDom = new TaskDom();
+        const main = document.querySelector(".main");
+
         const taskCard = document.createElement("div");
         taskCard.setAttribute("class", "task-card");
         taskCard.setAttribute("id", task.id);
@@ -34,7 +37,14 @@ class ProjectDom {
 
         const taskDesc = document.createElement("div");
         taskDesc.setAttribute("class", "task-desc");
+        taskDesc.style.cursor = "pointer";
         taskDesc.textContent = task.name;
+        taskDesc.addEventListener("click", () => {
+            while (main.firstChild) {
+                main.removeChild(main.firstChild);
+            }
+            main.appendChild(taskDom.displayTask(project, task));
+        });
         taskCard.appendChild(taskDesc);
 
         const taskEdit = document.createElement("div");
@@ -46,6 +56,7 @@ class ProjectDom {
         
         const taskDate = task.dueDate.split("-");
         const dueDate = document.createElement("p");
+        dueDate.style.cursor = "default";
         dueDate.textContent = `Due Date: ${task.dueDate}`;
         //sets due date field to red if it's past due.
         if (isAfter(new Date(), new Date(taskDate[0], taskDate[1]-1, taskDate[2]))) {
@@ -56,8 +67,7 @@ class ProjectDom {
         const edit = new Image();
         edit.src = Edit;
         edit.addEventListener("click", () => {
-            const taskDom = new TaskDom();
-            const main = document.querySelector(".main");
+            
                 while (main.firstChild) {
                     main.removeChild(main.firstChild);
                 }
