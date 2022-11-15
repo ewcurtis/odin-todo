@@ -266,8 +266,10 @@ class TaskDom {
             } else if (!taskDueDateInput.validity.valid) {
                 taskDueDateInput.reportValidity();
             } else {
-                project.taskArray.push(new Task(taskNameInput.value, taskDescInput.value, taskDueDateInput.value,
-                    document.querySelector("input[name='p']:checked").value));
+                task.name = taskNameInput.value;
+                task.description = taskDescInput.value;
+                task.dueDate = taskDueDateInput.value;
+                task.priority = document.querySelector("input[name='p']:checked").value;
                     while (main.firstChild) {
                        main.removeChild(main.firstChild);
                    }
