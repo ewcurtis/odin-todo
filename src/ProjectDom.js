@@ -3,6 +3,7 @@ import CPlus from './plus-circle.png';
 import TaskDom from './TaskDom.js';
 import Project from './Project.js';
 import isAfter from 'date-fns/isAfter';
+import Local from './Local.js';
 
 //Makes changes to the DOM in order to display tasks of a project
 
@@ -17,22 +18,25 @@ class ProjectDom {
         const taskCard = document.createElement("div");
         taskCard.setAttribute("class", "task-card");
         taskCard.setAttribute("id", task.id);
+        console.log("task: " + task.pressed);
 
-        let pressed = false;
         const taskButton = document.createElement("button");
         taskButton.setAttribute("class", "task-button");
         taskButton.addEventListener("click", () => {
-            if (!pressed) {
+            
+            if (!task.completed) {
                 taskDesc.style.textDecoration = "line-through";
                 taskButton.style.backgroundColor = "rgba(90, 0, 140, 1)";
-                pressed = !pressed;
             } else {
                 taskDesc.style.textDecoration = "none";
                 taskButton.style.backgroundColor = "white";
-                pressed = !pressed;
-
+            }
+            task.completed = !task.completed;
+            if (Local.storageAvailable("localStorage")) {
+                Local.updateArrays(project);
             }
         })
+
         taskCard.appendChild(taskButton);
 
         const taskDesc = document.createElement("div");
@@ -46,6 +50,14 @@ class ProjectDom {
             main.appendChild(taskDom.displayTask(project, task));
         });
         taskCard.appendChild(taskDesc);
+
+        if (task.completed) {
+            taskDesc.style.textDecoration = "line-through";
+            taskButton.style.backgroundColor = "rgba(90, 0, 140, 1)";
+        } else {
+            taskDesc.style.textDecoration = "none";
+            taskButton.style.backgroundColor = "white";
+        }
 
         const taskEdit = document.createElement("div");
         taskEdit.setAttribute("class", "task-edit");
@@ -81,6 +93,9 @@ class ProjectDom {
         del.addEventListener("click", () => {
             del.closest(".task-card-container").removeChild(taskCard);
             project.taskArray.splice(project.taskArray.indexOf(task), 1);
+            if (Local.storageAvailable("localStorage")) {
+                Local.updateArrays(project);
+            }
         })
         taskTools.appendChild(del);
         taskEdit.appendChild(taskTools);

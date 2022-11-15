@@ -33,6 +33,29 @@ class Local {
     static populateFavorites(array) {
         localStorage.setItem('favoritesArray', array);
     }
+
+    static updateArrays(project) {
+        const projectArray = JSON.parse(localStorage.getItem("projectArray"));
+                    for (let i = 0; i < projectArray.length; i++) {
+                        if (projectArray[i].id === project.id) {
+                            projectArray[i] = project;
+                            Local.populateArray(JSON.stringify(projectArray));
+                            break;
+                        }
+                    }
+
+                    if (project.favorited) {
+                        const favoritesArray = JSON.parse(localStorage.getItem("favoritesArray"));
+                        for (let i = 0; i < favoritesArray.length; i++) {
+                            if (favoritesArray[i].id === project.id) {
+                                favoritesArray[i] = project;
+                                Local.populateFavorites(JSON.stringify(favoritesArray));
+                                break;
+                            }
+
+                    }
+                }
+    }
     
 }
 

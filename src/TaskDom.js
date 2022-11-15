@@ -1,7 +1,8 @@
 //Makes changes to the DOM in order to display the create/edit task screen
 
-import Task from "./Task";
-import ProjectDom from "./ProjectDom";
+import Task from "./Task.js";
+import ProjectDom from "./ProjectDom.js";
+import Local from './Local.js';
 
 class TaskDom {
     createTask(project) {
@@ -55,6 +56,8 @@ class TaskDom {
 
     const taskDescInput = document.createElement("textArea");
     taskDescInput.setAttribute("id", "task-desc");
+    taskDescInput.setAttribute("maxlength", "150");
+    taskDescInput.setAttribute("placeholder", "Max 150 chars (optional)");
     taskDescField.appendChild(taskDescInput);
     newTask.appendChild(taskDescField);
 
@@ -116,6 +119,10 @@ class TaskDom {
         } else {
             project.taskArray.push(new Task(taskNameInput.value, taskDescInput.value, taskDueDateInput.value,
                 document.querySelector("input[name='p']:checked").value));
+                //Refreshes localStorage data
+                if (Local.storageAvailable("localStorage")) {
+                    Local.updateArrays(project);
+            }
                 while (main.firstChild) {
                    main.removeChild(main.firstChild);
                }
@@ -196,6 +203,8 @@ class TaskDom {
 
         const taskDescInput = document.createElement("textArea");
         taskDescInput.setAttribute("id", "task-desc");
+        taskDescInput.setAttribute("maxlength", "150");
+        taskDescInput.setAttribute("placeholder", "Max 150 chars (optional)");
         taskDescInput.value = task.description;
         taskDescField.appendChild(taskDescInput);
         newTask.appendChild(taskDescField);
@@ -270,6 +279,10 @@ class TaskDom {
                 task.description = taskDescInput.value;
                 task.dueDate = taskDueDateInput.value;
                 task.priority = document.querySelector("input[name='p']:checked").value;
+                //refreshes localStorage data
+                if (Local.storageAvailable("localStorage")) {
+                    Local.updateArrays(project);
+            }
                     while (main.firstChild) {
                        main.removeChild(main.firstChild);
                    }

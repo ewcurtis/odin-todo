@@ -2,7 +2,6 @@ import './styles.css';
 import Inbox from './Inbox.js';
 import Menu from './menu.svg';
 import Plus from './plus.png';
-import Project from './Project.js';
 import ProjectDom from './ProjectDom.js';
 import Local from './Local.js';
 
